@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-slate-800 antialiased min-h-screen font-sans;
+    background-color: #f8fafc;
+    background-image: radial-gradient(rgba(100, 116, 139, 0.28) 1.25px, transparent 1.25px);
+    background-size: 22px 22px;
+  }
+}
+
+@layer components {
+  /* Dot Grid Canvas Pattern */
+  .bg-dot-grid {
+    background-color: #f8fafc;
+    background-image: radial-gradient(rgba(100, 116, 139, 0.28) 1.25px, transparent 1.25px);
+    background-size: 22px 22px;
+  }
+
+  /* Glassmorphism Utilities */
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/30 shadow-xl;
+  }
+
+  .glass-dark {
+    @apply bg-slate-900/80 backdrop-blur-xl border border-slate-700 shadow-2xl;
+  }
+
+  /* Dynamic Gradients */
+  .bg-gradient-premium {
+    @apply bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500;
+  }
+
+  /* Micro-animations */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+}
+
+/* Background Animations for Hero & Search Area */
+@keyframes flightDash {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -200;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(35px, -25px) scale(1.08);
+  }
+  66% {
+    transform: translate(-25px, 20px) scale(0.95);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-30px, 30px) scale(0.94);
+  }
+  66% {
+    transform: translate(25px, -20px) scale(1.06);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-flight-dash {
+  stroke-dasharray: 8 10;
+  animation: flightDash 30s linear infinite;
+}
+
+.animate-flight-dash-reverse {
+  stroke-dasharray: 6 12;
+  animation: flightDash 40s linear infinite reverse;
+}
+
+.animate-float-slow {
+  animation: floatSlow 20s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 24s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 7s ease-in-out infinite;
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Neon Breathing Fade & Flight Glide Animations for Plane Icons */
+@keyframes neonFadeTakeoff {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(34, 211, 238, 0.45)) drop-shadow(0 0 6px rgba(34, 211, 238, 0.25));
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 1)) drop-shadow(0 0 16px rgba(34, 211, 238, 0.75));
+    transform: translateY(-2px) rotate(-4deg);
+    opacity: 1;
+  }
+}
+
+@keyframes neonFadeLanding {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(34, 211, 238, 0.45)) drop-shadow(0 0 6px rgba(34, 211, 238, 0.25));
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 1)) drop-shadow(0 0 16px rgba(34, 211, 238, 0.75));
+    transform: translateY(2px) rotate(4deg);
+    opacity: 1;
+  }
+}
+
+.animate-neon-takeoff {
+  animation: neonFadeTakeoff 2.8s ease-in-out infinite;
+}
+
+.animate-neon-landing {
+  animation: neonFadeLanding 2.8s ease-in-out infinite;
+}
+
+/* Smooth Page Opening / Reloading Transition */
+@keyframes smoothPageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: smoothPageEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Smooth Flight Cards Entrance Animation */
+@keyframes cardSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-enter {
+  animation: cardSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Indeterminate Search Progress Slide */
+@keyframes progressShift {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(25%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.animate-progress-slide {
+  animation: progressShift 1.4s ease-in-out infinite;
+}
+
